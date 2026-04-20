@@ -1,0 +1,14 @@
+[project]
+name = "qc-autoploter-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "lxml>=6.1.0",
+    "plotly>=6.7.0",
+    "pyqt6>=6.11.0",
+    "pyqt6-webengine>=6.11.0",
+    "pyteomics>=4.7.5",
+    "scipy>=1.15.3",
+]

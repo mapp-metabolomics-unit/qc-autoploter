@@ -1,3 +1,4 @@
+from importlib.metadata import files
 import sys, os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem
 import plotly.graph_objects as go
@@ -37,14 +38,20 @@ class OrbitrapApp(QMainWindow):
     def load_folder_files(self):
         """Load .mzML files from the current folder into the file list."""
         self.ui.file_list.clear()
-        
+    
         if not self.folder or not os.path.isdir(self.folder):
             self.ui.status_label.setText("Error: Folder not found")
             return
 
-        for f in os.listdir(self.folder):
-            if f.endswith(".mzML") and "QC_mapp" in f:
-                self.ui.file_list.addItem(f)
+        files = [
+            f for f in os.listdir(self.folder)
+            if f.lower().endswith(".mzml") and "qc_mapp" in f.lower()
+        ]
+
+        # tri A → Z (insensible à la casse)
+        files.sort(key=str.lower)
+
+        self.ui.file_list.addItems(files)
 
     def run_analysis(self):
         clear_cache()  # Clear cache to start fresh

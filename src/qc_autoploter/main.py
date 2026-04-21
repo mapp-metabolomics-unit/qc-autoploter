@@ -43,7 +43,7 @@ class OrbitrapApp(QMainWindow):
             return
 
         for f in os.listdir(self.folder):
-            if f.endswith(".mzML"):
+            if f.endswith(".mzML") and "QC_mapp" in f:
                 self.ui.file_list.addItem(f)
 
     def run_analysis(self):

@@ -48,7 +48,7 @@ class OrbitrapApp(QMainWindow):
             if f.lower().endswith(".mzml") and "qc_mapp" in f.lower()
         ]
 
-        # tri A → Z (insensible à la casse)
+        # sort A → Z 
         files.sort(key=str.lower)
 
         self.ui.file_list.addItems(files)
